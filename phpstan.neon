@@ -1,0 +1,52 @@
+# PHPStan Configuration - TOUCHE PAS AU KLAXON
+# Niveau 8: Strict analysis
+
+parameters:
+  # Niveau d'analyse (0-9)
+  level: 8
+  
+  # Répertoires à analyser
+  paths:
+    - src/
+    - public/index.php
+  
+  # Répertoires à exclure
+  excludePaths:
+    - vendor/
+    - tests/
+    - node_modules/
+    - var/
+  
+  # Règles strictes
+  checkMissingIterableValueType: true
+  checkMissingCallableSignature: true
+  checkImplicitMixed: true
+  reportMaybes: true
+  reportStaticMethodCalls: error
+  
+  # Strict types
+  strictRules:
+    uselessCast: true
+    uselessParentheses: true
+    uselessUnionType: true
+  
+  # Type coercion
+  disallowImplicitObjectCasts: true
+  
+  # Variadic
+  reportVariableTypeWidenings: true
+  
+  # Extensions
+  extensions:
+    - phpstan/phpstan-strict-rules
+  
+  # Ignorer les erreurs spécifiques si nécessaire
+  ignoreErrors: []
+  
+  # Configuration de mémoire
+  memoryLimit: 512M
+  
+  # Parallel processing
+  parallel:
+    jobSize: 20
+    maximumNumberOfProcesses: 4

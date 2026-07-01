@@ -1,0 +1,349 @@
+/**
+ * Mixins SCSS réutilisables
+ */
+
+// ============================================
+// RESPONSIVE
+// ============================================
+
+/// Mixin pour media queries
+/// @param {String} $breakpoint - Nom du breakpoint (sm, md, lg, xl, xxl)
+@mixin media-up($breakpoint) {
+  @if map-has-key($grid-breakpoints, $breakpoint) {
+    @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin media-down($breakpoint) {
+  @if map-has-key($grid-breakpoints, $breakpoint) {
+    @media (max-width: map-get($grid-breakpoints, $breakpoint) - 1) {
+      @content;
+    }
+  }
+}
+
+// ============================================
+// FLEXBOX & GRID
+// ============================================
+
+/// Flex row centré
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Flex colonne
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/// Flex colonne centré
+@mixin flex-center-column {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Space between layout
+@mixin space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+/// Truncate texte sur 1 ligne
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Truncate multi-ligne
+@mixin truncate-lines($lines: 3) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ============================================
+// BOUTONS
+// ============================================
+
+/// Bouton base (sans couleur)
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: $btn-padding-y $btn-padding-x;
+  font-size: $btn-font-size;
+  font-weight: $font-weight-semibold;
+  border-radius: $btn-border-radius;
+  border: none;
+  cursor: pointer;
+  transition: $transition-base;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+/// Variante bouton primaire
+@mixin btn-primary {
+  @include btn-base;
+  background-color: $primary;
+  color: white;
+  border: 2px solid $primary;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary, 10%);
+    border-color: darken($primary, 10%);
+    transform: translateY(-2px);
+    box-shadow: $box-shadow-lg;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+/// Variante bouton secondaire (outline)
+@mixin btn-secondary {
+  @include btn-base;
+  background-color: transparent;
+  color: $primary;
+  border: 2px solid $primary;
+
+  &:hover:not(:disabled) {
+    background-color: $primary;
+    color: white;
+  }
+}
+
+/// Variante bouton danger
+@mixin btn-danger {
+  @include btn-base;
+  background-color: $danger;
+  color: white;
+  border: 2px solid $danger;
+
+  &:hover:not(:disabled) {
+    background-color: darken($danger, 10%);
+    border-color: darken($danger, 10%);
+  }
+}
+
+/// Variante bouton petit
+@mixin btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+// ============================================
+// FORMULAIRES
+// ============================================
+
+/// Input base
+@mixin input-base {
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  font-size: $input-font-size;
+  font-family: $font-family-base;
+  border: $border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+  background-color: white;
+  transition: $transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: $input-focus-border-color;
+    box-shadow: $input-focus-box-shadow;
+  }
+
+  &:disabled {
+    background-color: #f1f5f9;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+}
+
+/// Groupe formulaire
+@mixin form-group {
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/// Label
+@mixin form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: $font-weight-semibold;
+  color: $dark;
+  font-size: 0.9375rem;
+}
+
+/// Aide texte
+@mixin form-text {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+/// Erreur formulaire
+@mixin form-error {
+  color: $danger;
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+
+  .form-control {
+    border-color: $danger;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($danger, 0.25);
+    }
+  }
+}
+
+// ============================================
+// CARDS & CONTAINERS
+// ============================================
+
+/// Card base
+@mixin card {
+  background-color: white;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  transition: $transition-base;
+
+  &:hover {
+    box-shadow: $box-shadow-lg;
+    transform: translateY(-4px);
+  }
+}
+
+/// Container
+@mixin container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+// ============================================
+// BADGES
+// ============================================
+
+/// Badge base
+@mixin badge {
+  display: inline-block;
+  padding: $badge-padding-y $badge-padding-x;
+  border-radius: $badge-border-radius;
+  font-size: $badge-font-size;
+  font-weight: $badge-font-weight;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/// Badge couleur
+@mixin badge-variant($bg, $text) {
+  background-color: lighten($bg, 35%);
+  color: darken($bg, 30%);
+}
+
+// ============================================
+// ALERTS
+// ============================================
+
+/// Alert base
+@mixin alert {
+  padding: $alert-padding-y $alert-padding-x;
+  border: $alert-border-width solid;
+  border-radius: $alert-border-radius;
+  margin-bottom: $alert-margin-bottom;
+}
+
+// ============================================
+// ACCESSIBILITY
+// ============================================
+
+/// Skip link (accessible)
+@mixin skip-link {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  z-index: 999;
+
+  &:focus {
+    top: 0;
+    left: 0;
+  }
+}
+
+/// Visually hidden (screen reader only)
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// ============================================
+// UTILITIES
+// ============================================
+
+/// Center absolument
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/// Clearfix
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/// Gradient simple
+@mixin gradient($color1, $color2, $direction: to right) {
+  background: linear-gradient($direction, $color1, $color2);
+}

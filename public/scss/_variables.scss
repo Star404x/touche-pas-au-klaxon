@@ -1,0 +1,201 @@
+/**
+ * Variables SCSS personnalisées pour TOUCHE PAS AU KLAXON
+ * Basées sur Bootstrap 5
+ */
+
+// ============================================
+// COULEURS PRIMAIRES
+// ============================================
+
+// Palette couleurs KLAXON (thème routier responsable)
+$primary: #2563eb;           // Bleu confiance
+$secondary: #64748b;         // Gris neutre
+$success: #10b981;           // Vert validation
+$danger: #ef4444;            // Rouge alerte
+$warning: #f59e0b;           // Orange attention
+$info: #0ea5e9;              // Cyan information
+$light: #f8fafc;             // Quasi blanc
+$dark: #1e293b;              // Quasi noir
+
+// Variantes additionnelles
+$brand-color: #ff6b00;       // Orange KLAXON (sécurité routière)
+$accent-color: #fbbf24;      // Or accent
+$bg-subtle: #f1f5f9;         // Fond léger
+
+// ============================================
+// TYPOGRAPHIE
+// ============================================
+
+// Fonts (system stack - performance)
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "Courier New", Courier, monospace;
+$font-family-base: $font-family-sans-serif;
+
+// Tailles
+$font-size-base: 1rem;           // 16px
+$font-size-sm: 0.875rem;         // 14px
+$font-size-lg: 1.125rem;         // 18px
+
+// Poids
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Line height
+$line-height-base: 1.5;
+$line-height-sm: 1.25;
+$line-height-lg: 1.75;
+
+// ============================================
+// ESPACEMENT
+// ============================================
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,    // 4px
+  2: $spacer * 0.5,     // 8px
+  3: $spacer,            // 16px
+  4: $spacer * 1.5,     // 24px
+  5: $spacer * 3,       // 48px
+  6: $spacer * 4,       // 64px
+);
+
+// ============================================
+// DIMENSIONNEMENTS
+// ============================================
+
+$border-radius: 0.5rem;         // 8px
+$border-radius-sm: 0.25rem;     // 4px
+$border-radius-lg: 1rem;        // 16px
+$border-radius-pill: 9999px;
+
+$border-width: 1px;
+$border-color: #e2e8f0;
+
+// ============================================
+// OMBRES
+// ============================================
+
+$box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// ============================================
+// FORMS
+// ============================================
+
+$input-padding-y: 0.625rem;      // 10px
+$input-padding-x: 1rem;          // 16px
+$input-font-size: 1rem;
+$input-border-radius: $border-radius;
+$input-border-color: #cbd5e1;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+
+$input-placeholder-color: #94a3b8;
+
+$btn-padding-y: 0.625rem;
+$btn-padding-x: 1.5rem;
+$btn-font-size: 1rem;
+$btn-border-radius: $border-radius;
+
+// ============================================
+// BREAKPOINTS (Responsive)
+// ============================================
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+);
+
+// ============================================
+// TRANSITIONS
+// ============================================
+
+$transition-base: all 0.2s ease-in-out;
+$transition-fade: opacity 0.15s linear;
+$transition-collapse: height 0.35s ease;
+
+// ============================================
+// MODALES
+// ============================================
+
+$modal-backdrop-bg: #000;
+$modal-backdrop-opacity: 0.5;
+$modal-content-bg: #fff;
+$modal-header-border-color: $border-color;
+$modal-header-padding: 1.5rem;
+$modal-body-padding: 1.5rem;
+
+// ============================================
+// BADGES
+// ============================================
+
+$badge-padding-y: 0.375rem;
+$badge-padding-x: 0.75rem;
+$badge-border-radius: $border-radius;
+$badge-font-size: 0.8125rem;
+$badge-font-weight: $font-weight-semibold;
+
+// ============================================
+// ALERTS
+// ============================================
+
+$alert-padding-y: 1rem;
+$alert-padding-x: 1.25rem;
+$alert-border-radius: $border-radius;
+$alert-border-width: $border-width;
+$alert-margin-bottom: 1.5rem;
+
+// ============================================
+// TABLES
+// ============================================
+
+$table-bg: transparent;
+$table-border-color: $border-color;
+$table-head-bg: $bg-subtle;
+$table-head-color: $dark;
+$table-striped-bg: rgba(0, 0, 0, 0.02);
+$table-hover-bg: rgba(0, 0, 0, 0.04);
+
+// ============================================
+// COMPOSANTS SPÉCIFIQUES KLAXON
+// ============================================
+
+// Badge statut trajet
+$badge-status-planning: #3b82f6;    // Bleu
+$badge-status-confirmed: #10b981;   // Vert
+$badge-status-completed: #6366f1;   // Indigo
+$badge-status-cancelled: #ef4444;   // Rouge
+
+// Flash messages
+$flash-success-bg: #d1fae5;
+$flash-success-border: #6ee7b7;
+$flash-success-text: #047857;
+
+$flash-error-bg: #fee2e2;
+$flash-error-border: #fca5a5;
+$flash-error-text: #dc2626;
+
+$flash-warning-bg: #fef3c7;
+$flash-warning-border: #fde68a;
+$flash-warning-text: #d97706;
+
+$flash-info-bg: #dbeafe;
+$flash-info-border: #93c5fd;
+$flash-info-text: #1e40af;

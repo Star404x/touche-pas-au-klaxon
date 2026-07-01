@@ -1,0 +1,869 @@
+/**
+ * App.scss - Fichier SCSS principal
+ * TOUCHE PAS AU KLAXON
+ */
+
+// 1. Configuration
+@import 'variables';
+@import 'mixins';
+
+// ============================================
+// 2. RESET & BASE
+// ============================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $dark;
+  background-color: #fafafa;
+}
+
+// ============================================
+// 3. TYPOGRAPHY
+// ============================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-bold;
+  line-height: $line-height-sm;
+  margin-bottom: 1rem;
+  color: $dark;
+}
+
+h1 {
+  font-size: 2.5rem;
+
+  @include media-down(md) {
+    font-size: 1.875rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+
+  @include media-down(md) {
+    font-size: 1.5rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+
+  @include media-down(md) {
+    font-size: 1.25rem;
+  }
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: $line-height-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: $transition-base;
+
+  &:hover {
+    color: darken($primary, 10%);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+small {
+  font-size: $font-size-sm;
+}
+
+strong {
+  font-weight: $font-weight-bold;
+}
+
+// ============================================
+// 4. FORMS
+// ============================================
+
+.form-group {
+  @include form-group;
+}
+
+.form-label {
+  @include form-label;
+}
+
+.form-text {
+  @include form-text;
+}
+
+.form-control {
+  @include input-base;
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%232563eb'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5rem auto;
+  padding-right: 2.5rem;
+}
+
+.form-check {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  cursor: pointer;
+  border: $border-width solid $input-border-color;
+  border-radius: 0.25rem;
+  transition: $transition-base;
+
+  &:checked {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: $input-focus-box-shadow;
+  }
+}
+
+.form-check-label {
+  margin-bottom: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-error {
+  @include form-error;
+  color: $danger;
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+}
+
+.invalid-feedback {
+  display: block;
+  color: $danger;
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+}
+
+.form-control.is-invalid,
+.form-control:invalid {
+  border-color: $danger;
+
+  &:focus {
+    border-color: $danger;
+    box-shadow: 0 0 0 0.2rem rgba($danger, 0.25);
+  }
+}
+
+.form-control.is-valid,
+.form-control:valid {
+  border-color: $success;
+
+  &:focus {
+    border-color: $success;
+    box-shadow: 0 0 0 0.2rem rgba($success, 0.25);
+  }
+}
+
+// ============================================
+// 5. BUTTONS
+// ============================================
+
+.btn {
+  @include btn-primary;
+
+  &.btn-secondary {
+    @include btn-secondary;
+  }
+
+  &.btn-success {
+    @include btn-primary;
+    background-color: $success;
+    border-color: $success;
+
+    &:hover:not(:disabled) {
+      background-color: darken($success, 10%);
+      border-color: darken($success, 10%);
+    }
+  }
+
+  &.btn-danger {
+    @include btn-danger;
+  }
+
+  &.btn-warning {
+    @include btn-primary;
+    background-color: $warning;
+    border-color: $warning;
+    color: $dark;
+
+    &:hover:not(:disabled) {
+      background-color: darken($warning, 10%);
+      border-color: darken($warning, 10%);
+    }
+  }
+
+  &.btn-sm {
+    @include btn-sm;
+  }
+
+  &.btn-lg {
+    padding: 0.875rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+
+  @include media-down(md) {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// ============================================
+// 6. CARDS
+// ============================================
+
+.card {
+  @include card;
+  background-color: white;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  padding: 1.25rem 1.5rem;
+  background-color: $bg-subtle;
+  border-bottom: $border-width solid $border-color;
+  font-weight: $font-weight-semibold;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  background-color: $bg-subtle;
+  border-top: $border-width solid $border-color;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: $font-weight-bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+  font-size: 0.9375rem;
+  color: $secondary;
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ============================================
+// 7. TABLES
+// ============================================
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+
+  th {
+    background-color: $table-head-bg;
+    color: $table-head-color;
+    font-weight: $font-weight-semibold;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid $table-border-color;
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: $border-width solid $table-border-color;
+  }
+
+  tbody tr {
+    transition: $transition-base;
+
+    &:hover {
+      background-color: $table-hover-bg;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  &.table-striped tbody tr:nth-child(odd) {
+    background-color: $table-striped-bg;
+  }
+
+  &.table-sm {
+    font-size: $font-size-sm;
+
+    th, td {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include media-down(md) {
+    .table {
+      font-size: $font-size-sm;
+
+      th, td {
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+
+// ============================================
+// 8. MODALES (BOOTSTRAP STYLE)
+// ============================================
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+  z-index: 1050;
+  @include flex-center;
+
+  &.show {
+    display: flex;
+  }
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 1rem;
+  max-width: 500px;
+
+  @include media-up(md) {
+    max-width: 500px;
+  }
+
+  @include media-up(lg) {
+    max-width: 750px;
+  }
+}
+
+.modal-content {
+  background-color: $modal-content-bg;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow-xl;
+  border: $border-width solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.modal-header {
+  padding: $modal-header-padding;
+  border-bottom: $border-width solid $modal-header-border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: $font-weight-bold;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: $secondary;
+    cursor: pointer;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    @include flex-center;
+    transition: $transition-base;
+
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+.modal-body {
+  padding: $modal-body-padding;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: $modal-body-padding;
+  border-top: $border-width solid $modal-header-border-color;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+
+  @include media-down(md) {
+    flex-direction: column-reverse;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// ============================================
+// 9. FLASH MESSAGES
+// ============================================
+
+.alert {
+  @include alert;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+
+  &.alert-success {
+    background-color: $flash-success-bg;
+    border-color: $flash-success-border;
+    color: $flash-success-text;
+  }
+
+  &.alert-danger {
+    background-color: $flash-error-bg;
+    border-color: $flash-error-border;
+    color: $flash-error-text;
+  }
+
+  &.alert-warning {
+    background-color: $flash-warning-bg;
+    border-color: $flash-warning-border;
+    color: $flash-warning-text;
+  }
+
+  &.alert-info {
+    background-color: $flash-info-bg;
+    border-color: $flash-info-border;
+    color: $flash-info-text;
+  }
+
+  .alert-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .alert-content {
+    flex: 1;
+
+    .alert-title {
+      font-weight: $font-weight-semibold;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .alert-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: inherit;
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: $transition-base;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.alert-dismissible {
+  padding-right: 3rem;
+  position: relative;
+
+  .alert-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+// ============================================
+// 10. BADGES
+// ============================================
+
+.badge {
+  @include badge;
+  background-color: $bg-subtle;
+  color: $secondary;
+
+  &.badge-primary {
+    background-color: lighten($primary, 40%);
+    color: darken($primary, 20%);
+  }
+
+  &.badge-success {
+    background-color: lighten($success, 35%);
+    color: darken($success, 30%);
+  }
+
+  &.badge-danger {
+    background-color: lighten($danger, 35%);
+    color: darken($danger, 30%);
+  }
+
+  &.badge-warning {
+    background-color: lighten($warning, 30%);
+    color: darken($warning, 30%);
+  }
+
+  &.badge-info {
+    background-color: lighten($info, 35%);
+    color: darken($info, 30%);
+  }
+
+  // Badges statut trajet
+  &.badge-status-planning {
+    background-color: lighten($badge-status-planning, 40%);
+    color: darken($badge-status-planning, 20%);
+  }
+
+  &.badge-status-confirmed {
+    background-color: lighten($badge-status-confirmed, 40%);
+    color: darken($badge-status-confirmed, 20%);
+  }
+
+  &.badge-status-completed {
+    background-color: lighten($badge-status-completed, 40%);
+    color: darken($badge-status-completed, 20%);
+  }
+
+  &.badge-status-cancelled {
+    background-color: lighten($badge-status-cancelled, 40%);
+    color: darken($badge-status-cancelled, 20%);
+  }
+}
+
+// ============================================
+// 11. LAYOUT
+// ============================================
+
+.container {
+  @include container;
+  max-width: 100%;
+
+  @include media-up(md) {
+    max-width: map-get($container-max-widths, md);
+  }
+
+  @include media-up(lg) {
+    max-width: map-get($container-max-widths, lg);
+  }
+
+  @include media-up(xl) {
+    max-width: map-get($container-max-widths, xl);
+  }
+
+  @include media-up(xxl) {
+    max-width: map-get($container-max-widths, xxl);
+  }
+}
+
+.container-fluid {
+  @include container;
+}
+
+// Espacements utilitaires
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: map-get($spacers, 1); }
+.mt-2 { margin-top: map-get($spacers, 2); }
+.mt-3 { margin-top: map-get($spacers, 3); }
+.mt-4 { margin-top: map-get($spacers, 4); }
+.mt-5 { margin-top: map-get($spacers, 5); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: map-get($spacers, 1); }
+.mb-2 { margin-bottom: map-get($spacers, 2); }
+.mb-3 { margin-bottom: map-get($spacers, 3); }
+.mb-4 { margin-bottom: map-get($spacers, 4); }
+.mb-5 { margin-bottom: map-get($spacers, 5); }
+
+.p-2 { padding: map-get($spacers, 2); }
+.p-3 { padding: map-get($spacers, 3); }
+.p-4 { padding: map-get($spacers, 4); }
+
+// Grid simple
+.row {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  @include media-up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.row-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    @include media-up(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &.row-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .col {
+    min-width: 0;
+  }
+}
+
+// ============================================
+// 12. NAVIGATION
+// ============================================
+
+.navbar {
+  background-color: white;
+  border-bottom: $border-width solid $border-color;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: $box-shadow-sm;
+}
+
+.navbar-container {
+  @include space-between;
+  @include container;
+  max-width: 100%;
+
+  @include media-up(lg) {
+    max-width: map-get($container-max-widths, lg);
+  }
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: $font-weight-bold;
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($primary, 10%);
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+
+  @include media-down(md) {
+    gap: 1rem;
+  }
+
+  a {
+    color: $dark;
+    text-decoration: none;
+    font-weight: $font-weight-semibold;
+    transition: $transition-base;
+
+    &:hover, &.active {
+      color: $primary;
+    }
+  }
+}
+
+// ============================================
+// 13. FOOTER
+// ============================================
+
+.footer {
+  background-color: $dark;
+  color: white;
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  @include container;
+  max-width: 100%;
+
+  @include media-up(lg) {
+    max-width: map-get($container-max-widths, lg);
+  }
+}
+
+.footer-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  h5 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #cbd5e1;
+
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.footer-bottom {
+  border-top: $border-width solid rgba(white, 0.1);
+  padding-top: 1rem;
+  text-align: center;
+  color: #cbd5e1;
+}
+
+// ============================================
+// 14. ACCESSIBILITY
+// ============================================
+
+.sr-only {
+  @include sr-only;
+}
+
+.skip-to-content {
+  @include skip-link;
+}
+
+// Focus visible
+*:focus-visible {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+}
+
+// ============================================
+// 15. RESPONSIVE
+// ============================================
+
+@include media-down(md) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+// Print styles
+@media print {
+  body {
+    background-color: white;
+  }
+
+  .navbar, .footer, .btn {
+    display: none;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
